@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5x2vn8i0kqvs"]
+
+[ext_resource type="Script" path="res://FPS CONTROLLER/Fps.gd" id="1_s5gs8"]
+[ext_resource type="Script" path="res://FPS CONTROLLER/RayCast3D.gd" id="2_1ixij"]
+[ext_resource type="PackedScene" uid="uid://chdf37lk3x4uk" path="res://scope.tscn" id="3_w7eso"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6qgcx"]
+
+[node name="Fps_character3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_s5gs8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_6qgcx")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+fov = 90.0
+near = 0.001
+
+[node name="RayCast3D" type="RayCast3D" parent="Head/Camera3D"]
+target_position = Vector3(0, 0, -100)
+script = ExtResource("2_1ixij")
+
+[node name="scope" parent="Head/Camera3D" instance=ExtResource("3_w7eso")]
+transform = Transform3D(0.007, 0, 0, 0, 0.007, 0, 0, 0, 0.007, 0, 0, -0.01)
+
+[node name="Head_check" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+target_position = Vector3(0, 1, 0)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://j5u8o4ty7cck"]
+
+[ext_resource type="Script" path="res://FPS CONTROLLER/decal/DECAL.gd" id="1_p75hu"]
+[ext_resource type="Texture2D" uid="uid://dcquimy2vkoym" path="res://FPS CONTROLLER/decal/BULLET.png" id="2_mtwj8"]
+
+[node name="DECAL" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_p75hu")
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+size = Vector3(0.1, 0.1, 0.1)
+texture_albedo = ExtResource("2_mtwj8")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

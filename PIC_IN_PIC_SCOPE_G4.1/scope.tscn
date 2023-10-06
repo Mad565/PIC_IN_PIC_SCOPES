@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://chdf37lk3x4uk"]
+
+[ext_resource type="Script" path="res://scope.gd" id="1_u6pdy"]
+[ext_resource type="ArrayMesh" uid="uid://djkxq8qeeeve0" path="res://scope_body.tres" id="2_hyxl0"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pto56"]
+viewport_path = NodePath("Node3D/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msbu7"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_pto56")
+uv1_scale = Vector3(0.65, 0.65, 0.65)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f2ioe"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_msbu7")
+height = 0.02
+
+[node name="scope" type="Node3D"]
+script = ExtResource("1_u6pdy")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.12392)
+mesh = SubResource("CylinderMesh_f2ioe")
+
+[node name="SubViewport" type="SubViewport" parent="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.95781)
+fov = 50.5
+near = 0.001
+
+[node name="Marker3D" type="Marker3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="ScopeBody" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-2.26494e-08, -0.3, -4.52987e-08, -0.3, 2.26494e-08, 2.62268e-08, -2.62268e-08, 4.52987e-08, -0.3, 0, 0, -2.8425)
+mesh = ExtResource("2_hyxl0")
+skeleton = NodePath("../..")
